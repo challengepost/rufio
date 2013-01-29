@@ -6,4 +6,8 @@ module EventsHelper
   def customer_url(customer_id)
     "#{customerio_base_url}/customers/#{customer_id}"
   end
+
+  def campaign_url(campaign_id)
+    "#{customerio_base_url}/transactionals/#{campaign_id}"
+  end
 end

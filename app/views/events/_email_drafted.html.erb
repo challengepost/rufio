@@ -1,5 +1,5 @@
 <%= link_to 'New draft email', event %>:
-<%= event.campaign_name %>
+<%= link_to event.campaign_name, campaign_url(event.campaign_id) %>
 (<i><%= event.subject %></i>)
 for
 <%= link_to event.email_address, customer_url(event.customer_id) %>

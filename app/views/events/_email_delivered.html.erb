@@ -1,5 +1,5 @@
 <%= link_to event.email_address, customer_url(event.customer_id) %>
 <%= link_to 'received', event %>
-the <%= event.campaign_name %> email:
+the <%= link_to event.campaign_name, campaign_url(event.campaign_id) %> email:
 <i><%= event.subject %></i>
 (<%= time_ago_in_words(Time.at(event.timestamp.to_i)) %> ago)
