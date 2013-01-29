@@ -1,6 +1,6 @@
 The <%= event.campaign_name %> email
 (<i><%= event.subject %></i>)
 for
-<%= event.email_address %>
+<%= link_to event.email_address, customer_url(event.customer_id) %>
 <%= link_to 'bounced', event %>
 (<%= time_ago_in_words(Time.at(event.timestamp.to_i)) %> ago)

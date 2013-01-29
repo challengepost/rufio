@@ -1,4 +1,4 @@
-<%= event.email_address %>
+<%= link_to event.email_address, customer_url(event.customer_id) %>
 <%= link_to 'received', event %>
 the <%= event.campaign_name %> email:
 <i><%= event.subject %></i>
