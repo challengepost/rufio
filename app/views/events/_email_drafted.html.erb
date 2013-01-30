@@ -1,6 +1,6 @@
-<%= link_to 'New draft email', event %>:
+New draft email:
 <%= link_to event.campaign_name, campaign_url(event.campaign_id) %>
 (<i><%= event.subject %></i>)
 for
 <%= link_to event.email_address, customer_url(event.customer_id) %>
-(<%= time_ago_in_words(Time.at(event.timestamp.to_i)) %> ago)
+(<%= link_to time_ago(event), event %>)

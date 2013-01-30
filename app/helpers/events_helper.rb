@@ -10,4 +10,8 @@ module EventsHelper
   def campaign_url(campaign_id)
     "#{customerio_base_url}/transactionals/#{campaign_id}"
   end
+
+  def time_ago(event)
+    "#{time_ago_in_words Time.at(event.timestamp.to_i)} ago"
+  end
 end
