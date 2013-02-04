@@ -1,7 +1,7 @@
 Error:
-The <%= event.campaign_name %> email
+The <%= link_to event.campaign_name, campaign_url(event.campaign_id) %> email
 (<i><%= event.subject %></i>)
 for
-<%= event.email_address %>
-<%= link_to 'failed', event %>
-(<%= time_ago_in_words(Time.at(event.timestamp.to_i)) %> ago)
+<%= link_to event.email_address, customer_url(event.customer_id) %>
+failed
+(<%= link_to time_ago(event), event %>)
