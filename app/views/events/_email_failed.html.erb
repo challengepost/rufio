@@ -1,0 +1,7 @@
+Error:
+The <%= link_to event.campaign_name, campaign_url(event.campaign_id) %> email
+(<i><%= event.subject %></i>)
+for
+<%= link_to event.email_address, customer_url(event.customer_id) %>
+failed
+(<%= link_to time_ago(event), event %>)
