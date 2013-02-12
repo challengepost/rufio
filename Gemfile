@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.11'
 gem 'jquery-rails'
 gem 'opensesame'
+gem 'thin'
 gem 'will_paginate', '~> 3.0'
 
 group :assets do
@@ -18,5 +19,4 @@ end
 group :development, :test do
   gem 'quiet_assets'
   gem 'sqlite3'
-  gem 'thin'
 end
