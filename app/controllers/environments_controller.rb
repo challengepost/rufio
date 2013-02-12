@@ -15,7 +15,7 @@ class EnvironmentsController < ApplicationController
   # GET /environments/1.json
   def show
     @environment = Environment.find(params[:id])
-    @filters = Event.group(:event_type).count
+    @filters = Event.group(:event_type).reorder(:event_type).count
 
     if params[:filter]
       @filter = params[:filter]
