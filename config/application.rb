@@ -55,5 +55,7 @@ module Rufio
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.honeybadger = ENV['HONEYBADGER_API_KEY']
   end
 end

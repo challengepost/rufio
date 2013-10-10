@@ -52,6 +52,10 @@ class EventsController < ApplicationController
 
       @event = Event.new(attributes)
 
+      if @event.error? && send_error_notifications?
+        notify_honeybadger_event(@event)
+      end
+
       respond_to do |format|
         if @event.save
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -98,5 +102,14 @@ class EventsController < ApplicationController
 
   def find_environment
     @environment = Environment.find_by_token(params[:token])
+  end
+
+  def notify_honeybadger_event(event)
+    Rails.logger.info "Notifying honeybadger: #{event.inspect}"
+    Honeybadger.notify(
+      :error_class   => "EmailDeliveryError",
+      :error_message => "EmailDeliveryError: #{event.inspect}",
+      :parameters    => params
+    )
   end
 end

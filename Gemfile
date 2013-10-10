@@ -6,6 +6,8 @@ gem 'opensesame'
 gem 'thin'
 gem 'will_paginate', '~> 3.0'
 
+gem 'honeybadger'
+
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
@@ -18,6 +20,10 @@ group :production do
 end
 
 group :development, :test do
+  gem 'faraday'
+  gem 'dotenv-rails'
   gem 'quiet_assets'
   gem 'sqlite3'
+  gem 'pry'
+  gem 'pry-debugger'
 end
