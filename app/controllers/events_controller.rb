@@ -44,11 +44,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     if @environment
+      p params
       attributes = params.delete(:data)
       attributes[:timestamp] = params[:event].delete(:timestamp).to_s
       attributes[:environment_id] = @environment.id
       attributes.merge!(params[:event])
-      p attributes
 
       @event = Event.new(attributes)
 
