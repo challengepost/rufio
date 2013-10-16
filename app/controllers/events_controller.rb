@@ -49,6 +49,7 @@ class EventsController < ApplicationController
       attributes[:timestamp] = params[:event].delete(:timestamp).to_s
       attributes[:environment_id] = @environment.id
       attributes.merge!(params[:event])
+      attributes.slice!(*Event.attribute_names)
 
       @event = Event.new(attributes)
 
