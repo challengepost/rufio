@@ -52,4 +52,46 @@ namespace :webhook do
       }
     }
   end
+
+  task :failed => :environment do
+    conn = Faraday.new(:url => 'http://localhost:3000') do |faraday|
+      faraday.request  :url_encoded             # form-encode POST params
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    end
+
+    ENV['TOKEN'] ||= Environment.last.token
+
+    conn.post "/events.json?token=#{ENV['TOKEN']}", {
+      event_type: "email_failed",
+      event_id: "76ced35f23a0bd34f66b",
+      timestamp: 1381865234,
+      event: {
+        event_type: "email_failed",
+        event_id: "76ced35f23a0bd34f66b",
+        timestamp: 1381865234
+      },
+      data:  {
+        customer_id: "development_33060",
+        email_address: "kevin@challengepost.com",
+        email_id: 85335844,
+        subject: "Your draft of {{event.challenge_title}} has been created",
+        variables:  {
+          email_id: 85335844,
+          event_id: "b76938f0-17fd-0131-7190-43c72a401813",
+          customer:  {
+            created_at: 1295306767,
+            deleted: false,
+            email: "kevin@challengepost.com",
+            enabled: true,
+            firstname: "Kevinlulzzaa",
+            id: "development_33060"
+          }
+        },
+        template_id: 3962,
+        campaign_id: 1588,
+        campaign_name: "New draft challenge to creator"
+      }
+    }
+  end
 end
