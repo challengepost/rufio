@@ -1,12 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
+gem 'honeybadger'
 gem 'jquery-rails'
 gem 'opensesame'
 gem 'thin'
 gem 'will_paginate', '~> 3.0'
-
-gem 'honeybadger'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -20,10 +19,10 @@ group :production do
 end
 
 group :development, :test do
-  gem 'faraday'
   gem 'dotenv-rails'
-  gem 'quiet_assets'
-  gem 'sqlite3'
+  gem 'faraday'
   gem 'pry'
   gem 'pry-debugger'
+  gem 'quiet_assets'
+  gem 'sqlite3'
 end
