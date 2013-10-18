@@ -108,9 +108,9 @@ class EventsController < ApplicationController
   def notify_honeybadger_event(event)
     Rails.logger.info "Notifying Honeybadger: #{event.inspect}"
     notify_honeybadger(
-      error_class: "EmailDeliveryError",
+      error_class:   "EmailDeliveryError",
       error_message: "EmailDeliveryError: #{event.inspect}",
-      parameters: params
+      parameters:    params
     )
   end
 end
