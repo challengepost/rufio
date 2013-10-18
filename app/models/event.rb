@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
     CUSTOMER_SUBSCRIBED   = 'customer_subscribed'
   ]
 
-  ERROR_TYPES = [EMAIL_FAILED, EMAIL_DROPPED, EMAIL_BOUNCED, EMAIL_SPAMMED]
+  ERROR_TYPES = [EMAIL_FAILED, EMAIL_DROPPED]
 
   def error?
     ERROR_TYPES.include?(event_type)
