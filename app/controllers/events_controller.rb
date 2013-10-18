@@ -44,13 +44,16 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     if @environment
-      p params
       attributes = params.delete(:data)
       attributes[:timestamp] = params[:event].delete(:timestamp).to_s
       attributes[:environment_id] = @environment.id
       attributes.merge!(params[:event])
 
-      @event = Event.new(attributes)
+      @event = Event.new(attributes.slice(*Event.attribute_names))
+
+      if @event.error? && send_error_notifications?
+        notify_honeybadger_event(@event, attributes)
+      end
 
       respond_to do |format|
         if @event.save
@@ -98,5 +101,15 @@ class EventsController < ApplicationController
 
   def find_environment
     @environment = Environment.find_by_token(params[:token])
+  end
+
+  def notify_honeybadger_event(event, attributes)
+    Rails.logger.info "Notifying Honeybadger: #{event.event_type}"
+
+    notify_honeybadger(
+      error_class:   "EmailDeliveryError",
+      error_message: "#{event.event_type}: #{attributes[:campaign_name]}",
+      parameters:    params.merge(event_attibutes: attributes)
+    )
   end
 end
