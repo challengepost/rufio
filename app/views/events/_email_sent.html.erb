@@ -1,0 +1,5 @@
+The <%= link_to event.campaign_name, campaign_url(event.campaign_id) %> email
+(<i><%= event.subject %></i>)
+was sent to
+<%= link_to event.email_address, customer_url(event.customer_id) %>
+(<%= link_to time_ago(event), event %>)
